@@ -33,6 +33,38 @@ const useStore = create((set, get) => ({
       set({ modal: "loginError" });
     }
   },
+  signUpUserCredentials: {
+    firstName: null,
+    lastName: null,
+    username: null,
+    email: null,
+    password: null,
+    street: null,
+    city: null,
+    phoneNumber: null,
+  },
+  setSignUpUserCredentials: (signUpUserCredentials) =>
+    set({ signUpUserCredentials }),
+  signedUpUser: null,
+  setSignupUser: async (signUpUserCredentials) => {
+    const signupUser = await fetch(`${env.API_URL}signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signUpUserCredentials),
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+    });
+    if (signupUser) set({ loggedInUser: signupUser });
+  },
+  logOut: () => {
+    set({
+      loggedInUser: null,
+    });
+  },
 }));
 
 export default useStore;

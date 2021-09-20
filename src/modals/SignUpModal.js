@@ -106,6 +106,42 @@ function SignUpModal() {
               />
             </Grid>
             <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="city"
+                label="City"
+                type="city"
+                id="city"
+                autoComplete="city"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="street"
+                label="Street"
+                type="street"
+                id="street"
+                autoComplete="street"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="phoneNumber"
+                label="PhoneNumber"
+                type="phoneNumber"
+                id="phoneNumber"
+                autoComplete="phoneNumber"
+              />
+            </Grid>
+            <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive marketing promotions and updates via email."
