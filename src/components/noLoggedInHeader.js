@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { APP_COLOR } from "../consistent";
 import logo from "../assets/shopCart.png";
@@ -39,22 +40,21 @@ const StyledHeader = styled.header`
   }
 `;
 
-const PinkButton = withStyles(() => ({
-  root: {
-    height: "50px",
-    marginLeft: "5px",
-    WebkitBorderRadius: "10px",
-    margin: "0",
-    borderRadius: 0,
-    color: APP_COLOR.black,
-    backgroundColor: APP_COLOR.lightPink,
-    "&:hover": {
-      backgroundColor: APP_COLOR.lightGrey,
-    },
-  },
-}))(Button);
-
 export default function NoLoggedInHeader() {
+  const PinkButton = withStyles(() => ({
+    root: {
+      height: "50px",
+      marginLeft: "5px",
+      WebkitBorderRadius: "10px",
+      margin: "0",
+      borderRadius: 0,
+      color: APP_COLOR.black,
+      backgroundColor: APP_COLOR.lightPink,
+      "&:hover": {
+        backgroundColor: APP_COLOR.lightGrey,
+      },
+    },
+  }))(Button);
   // @ts-ignore
   const setModal = useStore((state) => state.setModal);
   return (

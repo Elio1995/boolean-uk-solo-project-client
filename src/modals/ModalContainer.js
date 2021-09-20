@@ -1,13 +1,9 @@
+// import React from "react";
 // @ts-ignore
 import styled from "styled-components";
 import useStore from "../store";
 import LogInModal from "./LogInModal";
 import SignUpModal from "./SignUpModal";
-// const useStyles = makeStyles((theme) => ({
-//   modal: {
-//     border: theme(2),
-//   },
-// }));
 
 const StyledContainer = styled.div`
   position: absolute;
@@ -34,7 +30,7 @@ const StyledContainer = styled.div`
 export default function ModalContainer() {
   // @ts-ignore
   const modal = useStore((store) => store.modal);
-
+  console.log("modalContainer", modal);
   if (modal === "") {
     return null;
   }

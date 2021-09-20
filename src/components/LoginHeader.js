@@ -1,5 +1,6 @@
+import React from "react";
 import styled from "styled-components";
-import logo from "../assets/booleanAir_logo.png";
+import logo from "../assets/shopCart.png";
 import { APP_COLOR } from "../consistent";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -40,38 +41,24 @@ const StyledHeader = styled.header`
   }
 `;
 
-const NavButton = withStyles(() => ({
-  root: {
-    height: "40px",
-
-    margin: "0",
-    borderRadius: 0,
-    color: APP_COLOR.black,
-    "&:hover": {
-      color: APP_COLOR.grey,
-    },
-  },
-}))(Button);
-
-export const PinkButton = withStyles(() => ({
-  root: {
-    height: "50px",
-    WebkitBorderRadius: "10px",
-    margin: "5px",
-    marginLeft: "5px",
-    borderRadius: 0,
-    color: APP_COLOR.black,
-    backgroundColor: APP_COLOR.lightPink,
-    "&:hover": {
-      backgroundColor: APP_COLOR.lightGrey,
-    },
-  },
-}))(Button);
-
 export default function LoginHeader() {
+  const PinkButton = withStyles(() => ({
+    root: {
+      height: "50px",
+      WebkitBorderRadius: "10px",
+      margin: "5px",
+      marginLeft: "5px",
+      borderRadius: 0,
+      color: APP_COLOR.black,
+      backgroundColor: APP_COLOR.lightPink,
+      "&:hover": {
+        backgroundColor: APP_COLOR.lightGrey,
+      },
+    },
+  }))(Button);
   //   const logOut = useStore((state) => state.logOut);
   //   const loggedInUser = useStore((state) => state.loggedInUser);
-  const history = useHistory();
+  // const history = useHistory();
 
   //   useEffect(() => {
   //     if (loggedInUser && loggedInUser.role === "STAFF") {
@@ -82,30 +69,10 @@ export default function LoginHeader() {
   return (
     <StyledHeader>
       <img className="app-logo" src={logo}></img>
-      <nav>
-        <ul className="nav-list">
-          <ButtonGroup
-            variant="text"
-            color="primary"
-            aria-label="text primary button group"
-          >
-            <NavButton onClick={() => history.push("/")}>Buy Ticket</NavButton>
-            <NavButton onClick={() => history.push("/flightStatus")}>
-              Flight Status
-            </NavButton>
-            <NavButton onClick={() => history.push("/myBooking")}>
-              Check In
-            </NavButton>
-          </ButtonGroup>
-        </ul>
-      </nav>
+
       <div>
-        <PinkButton
-          variant="contained"
-          onClick={() => history.push("/myBooking")}
-        >
-          My Flight
-        </PinkButton>
+        <PinkButton variant="contained">My Favourites</PinkButton>
+        <PinkButton variant="contained">My Basket</PinkButton>
 
         <Link to="/">
           <PinkButton variant="contained">LogOut</PinkButton>

@@ -1,8 +1,7 @@
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+// import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -12,36 +11,36 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import useStore from "../store";
 
-const useStyles = makeStyles((theme) => ({
-  main: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  close: {
-    margin: theme.spacing(3, 0, 2),
-    backgroundColor: theme.palette.secondary.main,
-    "&:hover": {
-      backgroundColor: theme.palette.secondary.dark,
-    },
-    borderRadius: theme.spacing(200),
-    color: theme.palette.common.white,
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%",
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
 function SignUpModal() {
+  const useStyles = makeStyles((theme) => ({
+    main: {
+      marginTop: theme.spacing(8),
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    close: {
+      margin: theme.spacing(3, 0, 2),
+      backgroundColor: theme.palette.secondary.main,
+      "&:hover": {
+        backgroundColor: theme.palette.secondary.dark,
+      },
+      borderRadius: theme.spacing(200),
+      color: theme.palette.common.white,
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+      width: "100%",
+      marginTop: theme.spacing(3),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+  }));
+
   const classes = useStyles();
   // @ts-ignore
   const setModal = useStore((state) => state.setModal);
@@ -55,9 +54,6 @@ function SignUpModal() {
             X
           </Button>
         </Grid>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">
           Create New Account
         </Typography>
