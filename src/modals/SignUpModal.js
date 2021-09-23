@@ -1,5 +1,7 @@
 // import React from "react";
+import { useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
+import { APP_COLOR } from "../consistent";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
@@ -21,12 +23,12 @@ function SignUpModal() {
     },
     close: {
       margin: theme.spacing(3, 0, 2),
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: APP_COLOR.lightBlue,
       "&:hover": {
-        backgroundColor: theme.palette.secondary.dark,
+        backgroundColor: APP_COLOR.lightGrey,
       },
       borderRadius: theme.spacing(200),
-      color: theme.palette.common.white,
+      color: theme.palette.common.black,
     },
     avatar: {
       margin: theme.spacing(1),
@@ -38,12 +40,43 @@ function SignUpModal() {
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
+      backgroundColor: APP_COLOR.lightBlue,
+      "&:hover": {
+        backgroundColor: APP_COLOR.lightGrey,
+      },
+      color: theme.palette.common.black,
     },
   }));
 
   const classes = useStyles();
   // @ts-ignore
   const setModal = useStore((state) => state.setModal);
+  // @ts-ignore
+  const setSignupUser = useStore((state) => state.setSignupUser);
+  // @ts-ignore
+  const loggedInUser = useStore((state) => state.loggedInUser);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const target = e.target;
+
+    const newUser = {
+      firstName: target.firstName.value,
+      lastName: target.lastName.value,
+      username: target.username.value,
+      email: target.email.value,
+      password: target.password.value,
+      city: target.password.value,
+      street: target.street.value,
+      phoneNumber: target.phoneNumber.value,
+    };
+    setSignupUser(newUser);
+  };
+
+  useEffect(() => {
+    if (loggedInUser) setModal("");
+  }, [loggedInUser]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -57,7 +90,7 @@ function SignUpModal() {
         <Typography component="h1" variant="h5">
           Create New Account
         </Typography>
-        <form className={classes.form}>
+        <form onSubmit={handleSubmit} className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -91,6 +124,17 @@ function SignUpModal() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
               />
             </Grid>
             <Grid item xs={12}>

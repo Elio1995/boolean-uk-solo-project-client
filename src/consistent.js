@@ -5,7 +5,7 @@ export const APP_COLOR = {
   pink: "#ff8c94",
   white: "#ffffff",
   lightGrey: "#e6e6e6",
-  lightPink: "#fff2f3",
+  lightBlue: "#ADD8E6",
   black: "#000000",
   grey: "#808080",
 };

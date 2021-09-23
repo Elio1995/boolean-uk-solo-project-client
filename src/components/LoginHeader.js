@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/shopCart.png";
+import logo from "../assets/mainIcon.png";
 import { APP_COLOR } from "../consistent";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { Link, useHistory } from "react-router-dom";
+import useStore from "../store";
 
 const StyledHeader = styled.header`
   background-color: ${APP_COLOR.pink};
   position: fix;
   height: 100px;
+  width: 100vw;
   display: grid;
   padding: 0 20px;
   grid-template-columns: 160px 1fr 250px;
@@ -42,7 +44,7 @@ const StyledHeader = styled.header`
 `;
 
 export default function LoginHeader() {
-  const PinkButton = withStyles(() => ({
+  const BlueButton = withStyles(() => ({
     root: {
       height: "50px",
       WebkitBorderRadius: "10px",
@@ -56,6 +58,9 @@ export default function LoginHeader() {
       },
     },
   }))(Button);
+
+  // @ts-ignore
+  const logOut = useStore((state) => state.logOut);
   //   const logOut = useStore((state) => state.logOut);
   //   const loggedInUser = useStore((state) => state.loggedInUser);
   // const history = useHistory();
@@ -71,11 +76,13 @@ export default function LoginHeader() {
       <img className="app-logo" src={logo}></img>
 
       <div>
-        <PinkButton variant="contained">My Favourites</PinkButton>
-        <PinkButton variant="contained">My Basket</PinkButton>
+        <BlueButton variant="contained">My Favourites</BlueButton>
+        <BlueButton variant="contained">My Basket</BlueButton>
 
         <Link to="/">
-          <PinkButton variant="contained">LogOut</PinkButton>
+          <BlueButton onClick={logOut} variant="contained">
+            LogOut
+          </BlueButton>
         </Link>
       </div>
     </StyledHeader>

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { APP_COLOR } from "../consistent";
-import logo from "../assets/shopCart.png";
+import logo from "../assets/mainIcon.png";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import useStore from "../store";
 
 const StyledHeader = styled.header`
-  background-color: ${APP_COLOR.pink};
+  background-color: ${APP_COLOR.lightGrey};
   position: fix;
   height: 100px;
   display: grid;
@@ -49,9 +49,9 @@ export default function NoLoggedInHeader() {
       margin: "0",
       borderRadius: 0,
       color: APP_COLOR.black,
-      backgroundColor: APP_COLOR.lightPink,
+      backgroundColor: APP_COLOR.lightBlue,
       "&:hover": {
-        backgroundColor: APP_COLOR.lightGrey,
+        backgroundColor: APP_COLOR.lightBlue,
       },
     },
   }))(Button);
@@ -60,6 +60,7 @@ export default function NoLoggedInHeader() {
   return (
     <StyledHeader>
       <img className="app-logo" src={logo}></img>
+      <div></div>
       <div>
         <PinkButton onClick={() => setModal("logIn")} variant="contained">
           Login

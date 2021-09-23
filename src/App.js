@@ -1,11 +1,13 @@
 import React from "react";
 import useStore from "./store";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import NoLoggedInHeader from "./components/NoLoggedInHeader";
 import ModalContainer from "./modals/ModalContainer";
 import LoginHeader from "./components/LoginHeader";
-import { Hello } from "./components/Hello";
+import { ImageOpenPage } from "./components/ImageOpenPage";
+import MainPage from "./pages/MainPage";
+import DetailPage from "./pages/DetailPage";
 
 function App() {
   // @ts-ignore
@@ -14,9 +16,17 @@ function App() {
   return (
     <div className="App">
       <Switch>
+        {/* <Route path="/" exact>
+          {loggedInUser ? <LoginHeader /> : <NoLoggedInHeader />}
+          <ImageOpenPage />
+        </Route> */}
         <Route path="/" exact>
           {loggedInUser ? <LoginHeader /> : <NoLoggedInHeader />}
-          <Hello />
+          <MainPage />
+        </Route>
+        <Route path="/detail-page">
+          {loggedInUser ? <LoginHeader /> : <NoLoggedInHeader />}
+          <DetailPage />
         </Route>
       </Switch>
       <ModalContainer />

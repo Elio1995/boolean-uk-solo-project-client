@@ -9,6 +9,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import { APP_COLOR } from "../consistent";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import useStore from "../store";
@@ -23,16 +24,12 @@ function LogInModal() {
     },
     close: {
       margin: theme.spacing(3, 0, 2),
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: APP_COLOR.lightBlue,
       "&:hover": {
-        backgroundColor: theme.palette.secondary.dark,
+        backgroundColor: APP_COLOR.lightGrey,
       },
       borderRadius: theme.spacing(200),
-      color: theme.palette.common.white,
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.common.black,
     },
     form: {
       width: "100%",
@@ -40,6 +37,11 @@ function LogInModal() {
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
+      backgroundColor: APP_COLOR.lightBlue,
+      "&:hover": {
+        backgroundColor: APP_COLOR.lightGrey,
+      },
+      color: theme.palette.common.black,
     },
   }));
 
@@ -62,7 +64,6 @@ function LogInModal() {
     };
     setLoginUser(newCredentials);
   };
-  console.log("right here");
 
   //   const history = useHistory();
 
