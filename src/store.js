@@ -65,6 +65,19 @@ const useStore = create((set, get) => ({
       loggedInUser: null,
     });
   },
+
+  productList: null,
+  setProductList: async () => {
+    const productsFromServer = await fetch(`${env.API_URL}products`)
+      .then((res) => res.json())
+      .then((productsFromServer) =>
+        set({ productList: productsFromServer.data })
+      );
+  },
+  chooseProduct: "",
+  setChooseProduct: (productId) => {
+    set({ chooseProduct: productId });
+  },
 }));
 
 export default useStore;
