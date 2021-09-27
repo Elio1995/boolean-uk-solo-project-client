@@ -61,6 +61,10 @@ export default function LoginHeader() {
 
   // @ts-ignore
   const logOut = useStore((state) => state.logOut);
+  // @ts-ignore
+  const setFavouriteProducts = useStore((store) => store.setFavouriteProducts);
+  const history = useHistory();
+
   //   const logOut = useStore((state) => state.logOut);
   //   const loggedInUser = useStore((state) => state.loggedInUser);
   // const history = useHistory();
@@ -76,9 +80,19 @@ export default function LoginHeader() {
       <img className="app-logo" src={logo}></img>
 
       <div>
-        <BlueButton variant="contained">My Favourites</BlueButton>
-        <BlueButton variant="contained">My Basket</BlueButton>
-
+        <Link to="/favourites">
+          <BlueButton
+            onClick={() => {
+              setFavouriteProducts();
+            }}
+            variant="contained"
+          >
+            My Favourites
+          </BlueButton>
+        </Link>
+        <Link to="/cart">
+          <BlueButton variant="contained">My Basket</BlueButton>
+        </Link>
         <Link to="/">
           <BlueButton onClick={logOut} variant="contained">
             LogOut

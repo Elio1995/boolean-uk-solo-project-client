@@ -37,12 +37,13 @@ export const MySelectedBook = withStyles(() => ({
   root: {
     margin: "10px",
     padding: "10px",
-    width: "100vw",
-    height: "100vh",
+    width: "300px",
+    height: "400px",
     overflow: "scroll",
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateRows: "repeat(3, 80px)",
     backgroundColor: APP_COLOR.lightBlue,
+    border: "solid 1px",
   },
 }))(ToggleButtonGroup);
 

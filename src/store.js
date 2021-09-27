@@ -78,6 +78,18 @@ const useStore = create((set, get) => ({
   setChooseProduct: (productId) => {
     set({ chooseProduct: productId });
   },
+  favouriteProducts: null,
+  setFavouriteProducts: async () => {
+    const favouritesFromServer = await fetch(`${env.API_URL}favourites`)
+      .then((res) => res.json())
+      .then(() => set({ favouriteProducts: favouritesFromServer }));
+  },
+  findProductById: (productId) => {
+    // @ts-ignore
+    return get().productList.find((product) => {
+      return product.id === productId;
+    });
+  },
 }));
 
 export default useStore;

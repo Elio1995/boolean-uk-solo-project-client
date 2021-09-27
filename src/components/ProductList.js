@@ -47,7 +47,8 @@ export const MyList = withStyles(() => ({
   },
 }))(ToggleButtonGroup);
 
-export default function ProductList() {
+export default function ProductList(props) {
+  const { onAdd } = props;
   // @ts-ignore
   const chooseProduct = useStore((state) => state.chooseProduct);
   // @ts-ignore
@@ -81,16 +82,18 @@ export default function ProductList() {
     <MyList>
       {productList?.map((product) => {
         return (
-          <StyledList
-            onClick={() => {
-              setChooseProduct(product);
-            }}
-          >
-            <StyledImg src={product.image} alt="" />
+          <StyledList>
+            <StyledImg
+              onClick={() => {
+                setChooseProduct(product);
+              }}
+              src={product.image}
+              alt=""
+            />
             <h2>{product.title}</h2>
             <h2>{product.price}£</h2>
             <PinkButton>Add to my favourites</PinkButton>
-            <PinkButton>Buy it now</PinkButton>
+            <PinkButton onClick={() => onAdd(product)}>Add To Cart</PinkButton>
           </StyledList>
         );
       })}
