@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-unused-vars */
 import React from "react";
 import styled from "styled-components";
 import logo from "../assets/mainIcon.png";
