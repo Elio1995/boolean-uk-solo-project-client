@@ -38,18 +38,18 @@ function App() {
     }
   };
 
-  const onRemove = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
-    if (exist.quantity === 1) {
-      setCartItems(cartItems.filter((x) => x.id !== product.id));
-    } else {
-      setCartItems(
-        cartItems.map((x) =>
-          x.id === product.id ? { ...exist, quantity: exist.quantity - 1 } : x
-        )
-      );
-    }
-  };
+  // const onRemove = (product) => {
+  //   const exist = cartItems.find((x) => x.id === product.id);
+  //   if (exist.quantity === 1) {
+  //     setCartItems(cartItems.filter((x) => x.id !== product.id));
+  //   } else {
+  //     setCartItems(
+  //       cartItems.map((x) =>
+  //         x.id === product.id ? { ...exist, quantity: exist.quantity - 1 } : x
+  //       )
+  //     );
+  //   }
+  // };
 
   useEffect(() => {
     if (loggedInUser) {
@@ -66,7 +66,7 @@ function App() {
         .then((resp) => resp.json())
         .then((cart) => setCart(cart.data));
     }
-  }, [loggedInUser]);
+  }, [loggedInUser, setCart]);
 
   useEffect(() => {
     if (cart && cart.products !== null) {
@@ -82,7 +82,7 @@ function App() {
       setTotal(total);
       setQuantity(quantity);
     }
-  }, [cart]);
+  }, [cart, productList]);
 
   console.log("here");
   return (
