@@ -42,7 +42,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-export default function NoLoggedInHeader() {
+export default function NotLoggedInHeader() {
   const PinkButton = withStyles(() => ({
     root: {
       height: "50px",

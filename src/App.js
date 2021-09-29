@@ -3,7 +3,7 @@ import useStore from "./store";
 import "./App.css";
 import "./index.css";
 import { Switch, Route, Redirect } from "react-router-dom";
-import NoLoggedInHeader from "./components/NoLoggedInHeader";
+import NotLoggedInHeader from "./components/NotLoggedInHeader";
 import ModalContainer from "./modals/ModalContainer";
 import LoginHeader from "./components/LoginHeader";
 import MainPage from "./pages/MainPage";
@@ -90,23 +90,23 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/" exact>
-          {loggedInUser ? <LoginHeader /> : <NoLoggedInHeader />}
+          {loggedInUser ? <LoginHeader /> : <NotLoggedInHeader />}
           <Redirect to="/home" />
         </Route>
         <Route path="/home" exact>
-          {loggedInUser ? <LoginHeader /> : <NoLoggedInHeader />}
+          {loggedInUser ? <LoginHeader /> : <NotLoggedInHeader />}
           <MainPage onAdd={onAdd} />
         </Route>
         <Route path="/detail-page" exact>
-          {loggedInUser ? <LoginHeader /> : <NoLoggedInHeader />}
+          {loggedInUser ? <LoginHeader /> : <NotLoggedInHeader />}
           <DetailPage />
         </Route>
         <Route path="/favourites" exact>
-          {loggedInUser ? <LoginHeader /> : <NoLoggedInHeader />}
+          {loggedInUser ? <LoginHeader /> : <NotLoggedInHeader />}
           <FavouritePage />
         </Route>
         <Route path="/cart" exact>
-          {loggedInUser ? <LoginHeader /> : <NoLoggedInHeader />}
+          {loggedInUser ? <LoginHeader /> : <NotLoggedInHeader />}
           <CartPage total={total} setTotal={setTotal} />
         </Route>
       </Switch>
