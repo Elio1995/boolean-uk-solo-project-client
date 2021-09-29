@@ -10,6 +10,7 @@ import MainPage from "./pages/MainPage";
 import DetailPage from "./pages/DetailPage";
 import FavouritePage from "./pages/FavouritePage";
 import CartPage from "./pages/CartPage";
+import env from "react-dotenv";
 
 function App() {
   // @ts-ignore
@@ -53,7 +54,7 @@ function App() {
 
   useEffect(() => {
     if (loggedInUser) {
-      fetch(`http://localhost:3030/cart/${loggedInUser.id}`, {
+      fetch(`${env.API_URL}cart/${loggedInUser.id}`, {
         credentials: "include",
         method: "POST",
         headers: {
