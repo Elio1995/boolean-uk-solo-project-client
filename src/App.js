@@ -6,7 +6,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import NoLoggedInHeader from "./components/NoLoggedInHeader";
 import ModalContainer from "./modals/ModalContainer";
 import LoginHeader from "./components/LoginHeader";
-import { ImageOpenPage } from "./components/ImageOpenPage";
 import MainPage from "./pages/MainPage";
 import DetailPage from "./pages/DetailPage";
 import FavouritePage from "./pages/FavouritePage";
