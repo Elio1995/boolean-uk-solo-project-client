@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
+import Link from "@material-ui/core/Link";
 
 const StyledImg = styled.img`
   height: 100px;
@@ -48,7 +49,10 @@ export const MyList = withStyles(() => ({
 }))(ToggleButtonGroup);
 
 export default function ProductList(props) {
+  // @ts-ignore
   const { onAdd } = props;
+  // @ts-ignore
+  const setModal = useStore((state) => state.setModal);
   // @ts-ignore
   const chooseProduct = useStore((state) => state.chooseProduct);
   // @ts-ignore
@@ -57,6 +61,10 @@ export default function ProductList(props) {
   const productList = useStore((state) => state.productList);
   // @ts-ignore
   const setProductList = useStore((state) => state.setProductList);
+  // @ts-ignore
+  const loggedInUser = useStore((state) => state.loggedInUser);
+  // @ts-ignore
+  const addToCart = useStore((state) => state.addToCart);
 
   const history = useHistory();
 
@@ -93,7 +101,25 @@ export default function ProductList(props) {
             <h2>{product.title}</h2>
             <h2>{product.price}£</h2>
             <PinkButton>Add to my favourites</PinkButton>
-            <PinkButton onClick={() => onAdd(product)}>Add To Cart</PinkButton>
+            {/* <PinkButton onClick={() => onAdd(product)}>Add To Cart</PinkButton> */}
+            <div>
+              {
+                loggedInUser ? (
+                  <PinkButton
+                    // @ts-ignore
+                    onClick={() => addToCart(product)}
+                    className="product-button"
+                  >
+                    Add To Cart
+                  </PinkButton>
+                ) : (
+                  ""
+                )
+                // <Link onClick={() => setModal("signUp")}>
+                //   Not our member yet? Sign Up
+                // </Link>
+              }
+            </div>
           </StyledList>
         );
       })}

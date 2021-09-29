@@ -23,11 +23,13 @@ const StyledHeader = styled.header`
     justify-self: center;
     padding: 15px;
     justify-self: left;
+    text-decoration: none;
   }
   .nav-list {
     display: grid;
     grid-auto-flow: column;
     gap: 20px;
+    text-decoration: none;
   }
 
   @media only screen and (max-width: 650px) {

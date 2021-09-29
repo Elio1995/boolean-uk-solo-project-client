@@ -13,8 +13,8 @@ code {
 }
 
 .row {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
 }
 .col-1 {
   flex: 1;

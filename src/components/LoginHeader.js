@@ -9,13 +9,13 @@ import { Link, useHistory } from "react-router-dom";
 import useStore from "../store";
 
 const StyledHeader = styled.header`
-  background-color: ${APP_COLOR.pink};
+  background-color: ${APP_COLOR.lightGrey};
   position: fix;
   height: 100px;
   width: 100vw;
   display: grid;
   padding: 0 20px;
-  grid-template-columns: 160px 1fr 250px;
+  grid-template-columns: 160px 1fr 450px;
   place-items: center;
 
   .app-logo {
@@ -24,13 +24,13 @@ const StyledHeader = styled.header`
   nav {
     place-self: end;
     justify-self: center;
-    padding: 15px;
+    padding: 5px;
     justify-self: left;
   }
   .nav-list {
     display: grid;
     grid-auto-flow: column;
-    gap: 20px;
+    gap: 10px;
   }
 
   @media only screen and (max-width: 650px) {
@@ -47,14 +47,14 @@ export default function LoginHeader() {
   const BlueButton = withStyles(() => ({
     root: {
       height: "50px",
-      WebkitBorderRadius: "10px",
-      margin: "5px",
       marginLeft: "5px",
+      WebkitBorderRadius: "10px",
+      margin: "0",
       borderRadius: 0,
       color: APP_COLOR.black,
-      backgroundColor: APP_COLOR.lightPink,
+      backgroundColor: APP_COLOR.lightBlue,
       "&:hover": {
-        backgroundColor: APP_COLOR.lightGrey,
+        backgroundColor: APP_COLOR.lightBlue,
       },
     },
   }))(Button);
@@ -78,7 +78,7 @@ export default function LoginHeader() {
   return (
     <StyledHeader>
       <img className="app-logo" src={logo}></img>
-
+      <div></div>
       <div>
         <Link to="/favourites">
           <BlueButton

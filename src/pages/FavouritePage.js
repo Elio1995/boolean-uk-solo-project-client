@@ -25,7 +25,7 @@ export default function FavouritePage() {
         <div className="favourite-list">
           <h2>Favourite Books</h2>
           <ul>
-            {favouriteProducts.map((favouriteProduct) => {
+            {favouriteProducts.find((favouriteProduct) => {
               const product = findProductById(favouriteProduct.id);
               console.log("PRODUCT", product);
               return (

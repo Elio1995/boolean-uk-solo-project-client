@@ -84,10 +84,95 @@ const useStore = create((set, get) => ({
       .then((res) => res.json())
       .then(() => set({ favouriteProducts: favouritesFromServer }));
   },
+  //   inCartProducts: null,
+  //   setInCartProducts: async,
   findProductById: (productId) => {
     // @ts-ignore
     return get().productList.find((product) => {
       return product.id === productId;
+    });
+  },
+
+  cart: null,
+  setCart: (cart) => set({ cart }),
+  addToCart: async (chooseProduct) => {
+    const productToCart = {
+      quantity: 1,
+      // @ts-ignore
+      cartId: get().cart.id,
+      productId: chooseProduct.id,
+    };
+    await fetch(`${env.API_URL}cartProducts`, {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productToCart),
+    }).then(() => {
+      // @ts-ignore
+      fetch(`${env.API_URL}cart/${get().loggedInUser.id}`, {
+        credentials: "include",
+      })
+        .then((resp) => resp.json())
+        // @ts-ignore
+        .then((cart) => get().setCart(cart.data));
+    });
+  },
+  decreaseQuantity: async (chooseProduct) => {
+    if (chooseProduct.quantity === 1) {
+      await fetch(`${env.API_URL}cartProducts/${chooseProduct.id}`, {
+        credentials: "include",
+        method: "DELETE",
+        headers: {
+          "Content-Type": "aplication/json",
+        },
+      }).then(() => {
+        // @ts-ignore
+        fetch(`${env.API_URL}cart/${get().loggedInUser.id}`, {
+          credentials: "include",
+        })
+          .then((resp) => resp.json())
+          // @ts-ignore
+          .then((cart) => get().setCart(cart.data));
+      });
+    } else {
+      await fetch(`${env.API_URL}cartProducts/${chooseProduct.id}`, {
+        credentials: "include",
+        method: "PATCH",
+        headers: {
+          "Content-Type": "aplication/json",
+        },
+        body: JSON.stringify({
+          qty: 1,
+        }),
+      }).then(() => {
+        // @ts-ignore
+        fetch(`${env.API_URL}cart/${get().loggedInUser.id}`, {
+          credentials: "include",
+        })
+          .then((resp) => resp.json())
+          // @ts-ignore
+          .then((basket) => get().setBasket(basket.data));
+      });
+    }
+  },
+
+  removeCartItem: async (chooseProduct) => {
+    await fetch(`${env.API_URL}cartProducts/${chooseProduct.id}`, {
+      credentials: "include",
+      method: "DELETE",
+      headers: {
+        "Content-Type": "aplication/json",
+      },
+    }).then(() => {
+      // @ts-ignore
+      fetch(`${env.API_URL}cart/${get().loggedInUser.id}`, {
+        credentials: "include",
+      })
+        .then((resp) => resp.json())
+        // @ts-ignore
+        .then((cart) => get().setBasket(cart.data));
     });
   },
 }));

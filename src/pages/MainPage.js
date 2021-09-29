@@ -28,7 +28,8 @@ export const PinkButton = withStyles(() => ({
   },
 }))(Button);
 
-export default function MainPage() {
+export default function MainPage(props) {
+  const { onAdd } = props;
   // @ts-ignore
   const productList = useStore((state) => state.productList);
   // @ts-ignore
@@ -42,7 +43,7 @@ export default function MainPage() {
 
   return (
     <StyledPage>
-      <ProductList />
+      <ProductList onAdd={onAdd} />
     </StyledPage>
   );
 }

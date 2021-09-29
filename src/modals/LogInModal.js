@@ -65,18 +65,11 @@ function LogInModal() {
     setLoginUser(newCredentials);
   };
 
-  //   const history = useHistory();
+  const history = useHistory();
 
-  //   useEffect(() => {
-  //     console.log(loggedInUser);
-  //     if (loggedInUser.role === "USER") {
-  //       setModal("");
-  //     }
-  //       if (loggedInUser.role === "ADMIN") {
-  //         history.push("/staffpage");
-  //         setModal("");
-  //       }
-  //   }, [loggedInUser]);
+  useEffect(() => {
+    if (loggedInUser) setModal("");
+  }, [loggedInUser]);
 
   return (
     <Container component="main" maxWidth="xs">
