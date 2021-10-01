@@ -31,7 +31,7 @@ export const PinkButton = withStyles(() => ({
 }))(Button);
 
 export default function MainPage(props) {
-  const { onAdd } = props;
+  const { onAdd, addItemToFavourite } = props;
   // @ts-ignore
   const productList = useStore((state) => state.productList);
   // @ts-ignore
@@ -45,7 +45,7 @@ export default function MainPage(props) {
 
   return (
     <StyledPage>
-      <ProductList onAdd={onAdd} />
+      <ProductList onAdd={onAdd} addItemToFavourite={addItemToFavourite} />
     </StyledPage>
   );
 }

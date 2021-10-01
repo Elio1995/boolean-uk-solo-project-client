@@ -79,12 +79,12 @@ const useStore = create((set, get) => ({
   setChooseProduct: (productId) => {
     set({ chooseProduct: productId });
   },
-  favouriteProducts: null,
-  setFavouriteProducts: async () => {
-    const favouritesFromServer = await fetch(`${env.API_URL}favourites`)
-      .then((res) => res.json())
-      .then(() => set({ favouriteProducts: favouritesFromServer }));
-  },
+  // favouriteProducts: null,
+  // setFavouriteProducts: async () => {
+  //   const favouritesFromServer = await fetch(`${env.API_URL}favourites`)
+  //     .then((res) => res.json())
+  //     .then(() => set({ favouriteProducts: favouritesFromServer }));
+  // },
   //   inCartProducts: null,
   //   setInCartProducts: async,
   findProductById: (productId) => {

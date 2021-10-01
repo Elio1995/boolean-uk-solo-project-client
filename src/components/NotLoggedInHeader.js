@@ -6,6 +6,7 @@ import logo from "../assets/mainIcon.png";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import useStore from "../store";
+import { Link } from "react-router-dom";
 
 const StyledHeader = styled.header`
   background-color: ${APP_COLOR.lightGrey};
@@ -60,9 +61,17 @@ export default function NotLoggedInHeader() {
   }))(Button);
   // @ts-ignore
   const setModal = useStore((state) => state.setModal);
+  // @ts-ignore
+  const setChooseProduct = useStore((state) => state.setChooseProduct);
+
+  const handleClick = () => {
+    setChooseProduct("");
+  };
   return (
     <StyledHeader>
-      <img className="app-logo" src={logo}></img>
+      <Link onClick={handleClick} to="/home">
+        <img className="app-logo" src={logo}></img>
+      </Link>
       <div></div>
       <div>
         <PinkButton onClick={() => setModal("logIn")} variant="contained">

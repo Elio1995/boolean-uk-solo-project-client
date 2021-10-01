@@ -7,12 +7,26 @@ import styled from "styled-components";
 import { APP_COLOR } from "../consistent";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import ProductList from "./ProductList";
 
 const StyledImg = styled.img`
   height: 100px;
   width: 100px;
 `;
+
+export const MyList = withStyles(() => ({
+  root: {
+    margin: "10px",
+    padding: "10px",
+    width: "100vw",
+    height: "100vh",
+    overflow: "scroll",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    backgroundColor: APP_COLOR.lightBlue,
+  },
+}))(ToggleButtonGroup);
 
 const PinkButton = withStyles(() => ({
   root: {
@@ -43,6 +57,8 @@ export default function MainCart(props) {
   const productList = useStore((state) => state.productList);
   // @ts-ignore
   const setProductList = useStore((state) => state.setProductList);
+  // @ts-ignore
+  const loggedInUser = useStore((state) => state.loggedInUser);
 
   useEffect(() => {
     setProductList();
@@ -50,13 +66,51 @@ export default function MainCart(props) {
 
   return (
     <>
-      <div className="block col-2">
+      <MyList>
+        {productList?.map((product) => {
+          return (
+            <StyledList>
+              <StyledImg src={product.image} alt="" />
+              <h2>{product.title}</h2>
+              <h2>{product.price}£</h2>
+              <PinkButton
+                onClick={() => onAdd(product)}
+                className="product-button"
+              >
+                Add To Cart
+              </PinkButton>
+              {/* <PinkButton>Add to my favourites</PinkButton> */}
+              {/* <PinkButton onClick={() => onAdd(product)}>Add To Cart</PinkButton> */}
+              {/* <div>
+                {
+                  loggedInUser ? (
+                    <PinkButton
+                      // @ts-ignore
+                      // onClick={() => addToCart(product)}
+                      className="product-button"
+                    >
+                      Add To Cart
+                    </PinkButton>
+                  ) : (
+                    ""
+                  )
+                  // <Link onClick={() => setModal("signUp")}>
+                  //   Not our member yet? Sign Up
+                  // </Link>
+                }
+              </div> */}
+            </StyledList>
+          );
+        })}
+      </MyList>
+
+      {/* <div className="block col-2">
         <ProductList
           // @ts-ignore
           onAdd={onAdd}
         />
         <div className="row"></div>
-      </div>
+      </div> */}
     </>
   );
 }

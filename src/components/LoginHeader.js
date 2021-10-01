@@ -65,7 +65,10 @@ export default function LoginHeader() {
   const logOut = useStore((state) => state.logOut);
   // @ts-ignore
   const setFavouriteProducts = useStore((store) => store.setFavouriteProducts);
-  const history = useHistory();
+  // @ts-ignore
+  const chooseProduct = useStore((state) => state.chooseProduct);
+  // @ts-ignore
+  const setChooseProduct = useStore((state) => state.setChooseProduct);
 
   //   const logOut = useStore((state) => state.logOut);
   //   const loggedInUser = useStore((state) => state.loggedInUser);
@@ -77,20 +80,19 @@ export default function LoginHeader() {
   //     }
   //   }, []);
 
+  const handleClick = () => {
+    setChooseProduct("");
+  };
+
   return (
     <StyledHeader>
-      <img className="app-logo" src={logo}></img>
+      <Link onClick={handleClick} to="/home">
+        <img className="app-logo" src={logo}></img>
+      </Link>
       <div></div>
       <div>
         <Link to="/favourites">
-          <BlueButton
-            onClick={() => {
-              setFavouriteProducts();
-            }}
-            variant="contained"
-          >
-            My Favourites
-          </BlueButton>
+          <BlueButton variant="contained">My Favourites</BlueButton>
         </Link>
         <Link to="/cart">
           <BlueButton variant="contained">My Basket</BlueButton>

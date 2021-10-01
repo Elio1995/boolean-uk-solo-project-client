@@ -6,9 +6,13 @@ import { APP_COLOR } from "../consistent";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import ToggleButton from "@material-ui/lab/ToggleButton";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
+import Container from "@material-ui/core/Container";
+
 import Link from "@material-ui/core/Link";
+import { createPropertySignature } from "typescript";
 
 const StyledImg = styled.img`
   height: 100px;
@@ -37,6 +41,32 @@ const StyledList = styled.button`
   border-radius: 3px;
 `;
 
+export const MyToggleList = withStyles(() => ({
+  root: {
+    margin: "10px",
+    padding: "10px",
+    overflow: "scroll",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+  },
+}))(ToggleButtonGroup);
+
+export const MyToggleButton = withStyles(() => ({
+  root: {
+    height: "50px",
+    fontSize: "12px",
+    WebkitBorderRadius: "10px",
+    margin: "5px",
+    padding: "50px",
+    borderRadius: 0,
+    color: APP_COLOR.black,
+    backgroundColor: APP_COLOR.lightBlue,
+    "&:hover": {
+      backgroundColor: APP_COLOR.lightGrey,
+    },
+  },
+}))(ToggleButton);
+
 export const MyList = withStyles(() => ({
   root: {
     margin: "10px",
@@ -48,9 +78,10 @@ export const MyList = withStyles(() => ({
     gridTemplateColumns: "repeat(3, 1fr)",
     backgroundColor: APP_COLOR.lightBlue,
   },
-}))(ToggleButtonGroup);
+}))(Container);
 
 export default function ProductList(props) {
+  const { addItemToFavourite } = props;
   // @ts-ignore
   const { onAdd } = props;
   // @ts-ignore
@@ -88,6 +119,12 @@ export default function ProductList(props) {
 
   //   console.log(chooseAirport);
 
+  const handleProduct = (e, newProduct) => {
+    setChooseProduct(newProduct);
+  };
+
+  console.log(chooseProduct);
+
   return (
     <MyList>
       {productList?.map((product) => {
@@ -102,17 +139,22 @@ export default function ProductList(props) {
             />
             <h2>{product.title}</h2>
             <h2>{product.price}£</h2>
-            <PinkButton>Add to my favourites</PinkButton>
+            {/* <PinkButton>Add to my favourites</PinkButton> */}
             {/* <PinkButton onClick={() => onAdd(product)}>Add To Cart</PinkButton> */}
+
             <div>
+              {/* <MyToggleList
+                value={chooseProduct}
+                exclusive
+                onChange={handleProduct}
+              > */}
               {
                 loggedInUser ? (
                   <PinkButton
-                    // @ts-ignore
-                    onClick={() => addToCart(product)}
+                    onClick={() => addItemToFavourite(product)}
                     className="product-button"
                   >
-                    Add To Cart
+                    Add to my favourites
                   </PinkButton>
                 ) : (
                   ""
@@ -121,6 +163,7 @@ export default function ProductList(props) {
                 //   Not our member yet? Sign Up
                 // </Link>
               }
+              {/* </MyToggleList> */}
             </div>
           </StyledList>
         );
